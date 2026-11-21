@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Gaming // Defy Gravity. Dominate The Arena.</title>
+  <meta name="description" content="Next-generation zero-gravity physics, lightning-fast esports combat, and deep-space extraction warfare. Welcome to Antigravity Gaming.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2307070D' stroke='%2300F0FF' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%2300F0FF'/><circle cx='50' cy='50' r='8' fill='%23BD00FF'/><path d='M20 50 Q50 20 80 50' stroke='%23BD00FF' stroke-width='3' fill='none'/></svg>">
+
+  <!-- Google Fonts: Orbitron, Syne, Space Grotesk, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            space: {
+              950: '#040408',
+              900: '#07070D',
+              850: '#0B0B14',
+              800: '#10101F',
+              700: '#17172C',
+              600: '#23233F',
+            },
+            cyan: {
+              glow: '#00F0FF',
+              bright: '#38F9D7',
+              dark: '#008b94'
+            },
+            neon: {
+              purple: '#8A2BE2',
+              magenta: '#BD00FF',
+              pink: '#FF007F',
+              amber: '#FFB800',
+              emerald: '#00FF9D'
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            syne: ['Syne', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            inter: ['Inter', 'sans-serif']
+          },
+          boxShadow: {
+            'cyan-glow': '0 0 25px rgba(0, 240, 255, 0.45)',
+            'cyan-lg': '0 0 45px rgba(0, 240, 255, 0.6)',
+            'purple-glow': '0 0 25px rgba(189, 0, 255, 0.45)',
+            'purple-lg': '0 0 50px rgba(138, 43, 226, 0.55)',
+            'dual-glow': '0 0 30px rgba(0, 240, 255, 0.3), 0 0 60px rgba(189, 0, 255, 0.25)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.7)',
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 7s ease-in-out 2.5s infinite',
+            'float-fast': 'float 4s ease-in-out infinite',
+            'spin-slow': 'spin 22s linear infinite',
+            'spin-reverse-slow': 'spinReverse 28s linear infinite',
+            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite alternate',
+            'grid-scan': 'gridScan 10s linear infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-14px)' },
+            },
+            spinReverse: {
+              '0%': { transform: 'rotate(360deg)' },
+              '100%': { transform: 'rotate(0deg)' },
+            },
+            pulseGlow: {
+              '0%': { filter: 'drop-shadow(0 0 10px rgba(0, 240, 255, 0.4))' },
+              '100%': { filter: 'drop-shadow(0 0 28px rgba(189, 0, 255, 0.7))' }
+            },
+            gridScan: {
+              '0%': { transform: 'translateY(0)' },
+              '100%': { transform: 'translateY(60px)' }
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(200%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07070D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1c1c38;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00F0FF;
+      box-shadow: 0 0 12px #00F0FF;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(0, 240, 255, 0.3);
+      color: #00F0FF;
+    }
+
+    /* Futuristic HUD & Cyber Borders */
+    .cyber-cut {
+      clip-path: polygon(12px 0%, 100% 0%, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0% 100%, 0% 12px);
+    }
+    .cyber-cut-sm {
+      clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+    }
+    .cyber-badge-cut {
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    /* Glassmorphism */
+    .glass-panel {
+      background: rgba(11, 11, 20, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.14);
+    }
+    .glass-panel-glow {
+      background: rgba(16, 16, 31, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 240, 255, 0.22);
+      box-shadow: 0 10px 40px -10px rgba(0, 240, 255, 0.15);
+    }
+
+    /* Grid Perspective Background */
+    .perspective-grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65vh;
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.08) 1px, transparent 1px);
+      background-size: 55px 55px;
+      transform: perspective(600px) rotateX(65deg) translateZ(0);
+      transform-origin: bottom center;
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 90%);
+      pointer-events: none;
+    }
+
+    /* Text Glows */
+    .text-glow-cyan {
+      text-shadow: 0 0 14px rgba(0, 240, 255, 0.7), 0 0 35px rgba(0, 240, 255, 0.4);
+    }
+    .text-glow-purple {
+      text-shadow: 0 0 14px rgba(189, 0, 255, 0.7), 0 0 35px rgba(189, 0, 255, 0.4);
+    }
+
+    /* ZERO-G MODE STYLES & LEVITATION PHYSICS */
+    body.zero-g-active {
+      background-color: #040409 !important;
+    }
+
+    /* When Zero-G is ON, apply float physics to all marked items */
+    body.zero-g-active .zero-g-item {
+      transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.8s ease;
+      animation: zeroGBob var(--zg-duration, 5s) ease-in-out infinite alternate !important;
+      animation-delay: var(--zg-delay, 0s) !important;
+      transform: translateY(var(--zg-offset-y, -26px)) rotate(var(--zg-rot, 2deg)) scale(1.015);
+      box-shadow: 0 20px 45px -10px rgba(0, 240, 255, 0.35), 0 0 20px rgba(189, 0, 255, 0.25) !important;
+    }
+
+    body.zero-g-active .zero-g-item:hover {
+      transform: translateY(calc(var(--zg-offset-y, -26px) - 15px)) rotate(calc(var(--zg-rot, 2deg) * 1.5)) scale(1.03) !important;
+      cursor: grab;
+    }
+
+    body.zero-g-active .zero-g-indicator-ring {
+      animation: spin 3s linear infinite;
+      box-shadow: 0 0 30px #00F0FF, 0 0 60px #BD00FF;
+    }
+
+    @keyframes zeroGBob {
+      0% {
+        transform: translateY(var(--zg-offset-y, -24px)) rotate(var(--zg-rot, 1.5deg));
+      }
+      50% {
+        transform: translateY(calc(var(--zg-offset-y, -24px) - 18px)) rotate(calc(var(--zg-rot, 1.5deg) * -0.8));
+      }
+      100% {
+        transform: translateY(calc(var(--zg-offset-y, -24px) + 8px)) rotate(calc(var(--zg-rot, 1.5deg) * 1.2));
+      }
+    }
+
+    /* Custom 3D perspective wrapper */
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body class="bg-space-900 text-slate-100 font-space min-h-screen relative overflow-x-hidden selection:bg-cyan-glow/30 selection:text-cyan-glow">
+
+  <!-- ========================================================= -->
+  <!-- 1. FULLSCREEN CANVAS: 60FPS STARFIELD & PARTICLES -->
+  <!-- ========================================================= -->
+  <canvas id="starfield-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Sci-Fi Perspective Grid at bottom of viewport -->
+  <div class="perspective-grid"></div>
+
+  <!-- Audio status alert pill / toast -->
+  <div id="audio-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none glass-panel px-4 py-2.5 rounded-lg border border-cyan-glow/40 flex items-center space-x-3 text-xs text-cyan-glow font-orbitron tracking-wider shadow-cyan-glow">
+    <span class="w-2 h-2 rounded-full bg-cyan-glow animate-ping"></span>
+    <span id="audio-toast-msg">AUDIO CORE ENGAGED</span>
+  </div>
+
+  <!-- Zero-G Warning Banner (Floats when Zero-G is ON) -->
+  <div id="zero-g-banner" class="fixed top-24 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 opacity-0 pointer-events-none -translate-y-8 glass-panel px-5 py-2.5 rounded-full border border-cyan-glow/60 shadow-dual-glow flex items-center space-x-3 text-xs font-orbitron">
+    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-cyan-glow/20 text-cyan-glow">
+      <svg class="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+      </svg>
+    </span>
+    <span class="text-cyan-glow tracking-widest font-bold">WARNING: ZERO-G MATRIX ENGAGED</span>
+    <span class="text-slate-400 text-[10px] hidden sm:inline">// INERTIAL DAMPENERS OFFLINE</span>
+    <button id="zero-g-reset-btn" class="ml-2 px-2.5 py-0.5 rounded bg-cyan-glow/20 hover:bg-cyan-glow hover:text-space-950 text-cyan-glow text-[10px] transition-colors border border-cyan-glow/40 cursor-pointer pointer-events-auto">
+      RESTORE 1G
+    </button>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 2. FLOATING GLASSMORPHIC NAVBAR -->
+  <!-- ========================================================= -->
+  <header class="sticky top-4 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="glass-panel rounded-2xl px-4 py-3 sm:px-6 sm:py-3.5 flex items-center justify-between border border-cyan-glow/20 shadow-glass transition-all duration-300 hover:border-cyan-glow/40">
+      
+      <!-- Brand Logo with Suspended Orb Icon -->
+      <a href="#hero" class="group flex items-center space-x-3.5 focus:outline-none">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <!-- Outer rotating ring -->
+          <svg class="absolute inset-0 w-full h-full text-cyan-glow animate-spin-slow group-hover:text-neon-magenta transition-colors" viewBox="0 0 44 44" fill="none">
+            <circle cx="22" cy="22" r="19" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.8"/>
+          </svg>
+          <!-- Counter rotating inner ring -->
+          <svg class="absolute inset-1 w-8 h-8 text-neon-purple animate-spin-reverse-slow" viewBox="0 0 36 36" fill="none">
+            <ellipse cx="18" cy="18" rx="14" ry="7" stroke="currentColor" stroke-width="1.2" transform="rotate(-25 18 18)" opacity="0.9"/>
+          </svg>
+          <!-- Core suspended glowing orb -->
+          <div class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-cyan-glow via-white to-neon-magenta shadow-[0_0_15px_#00F0FF] group-hover:scale-125 transition-transform duration-300"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-orbitron font-extrabold text-lg sm:text-xl tracking-wider text-white group-hover:text-cyan-glow transition-colors flex items-center">
+            ANTIGRAVITY<span class="text-cyan-glow font-light ml-0.5 text-xs">®</span>
+          </span>
+          <span class="text-[9px] font-orbitron tracking-widest text-slate-400 uppercase -mt-1">
+            Indie Studio <span class="text-neon-magenta">//</span> Esports
+          </span>
+        </div>
+      </a>
+
+      <!-- Center Links (Desktop) -->
+      <div class="hidden md:flex items-center space-x-1 lg:space-x-2 bg-space-850/60 p-1 rounded-xl border border-white/5">
+        <a href="#games" class="nav-link px-3.5 py-1.5 rounded-lg text-sm text-slate-300 hover:text-cyan-glow hover:bg-space-700/60 transition-all font-medium tracking-wide flex items-center space-x-1.5">
+          <span>Games</span>
+          <span class="text-[9px] font-mono px-1 py-0.2 bg-cyan-glow/10 text-cyan-glow border border-cyan-glow/20 rounded">03</span>
+        </a>
+        <a href="#esports" class="nav-link px-3.5 py-1.5 rounded-lg text-sm text-slate-300 hover:text-cyan-glow hover:bg-space-700/60 transition-all font-medium tracking-wide flex items-center space-x-1.5">
+          <span>Esports</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-neon-pink animate-ping"></span>
+        </a>
+        <a href="#studio" class="nav-link px-3.5 py-1.5 rounded-lg text-sm text-slate-300 hover:text-cyan-glow hover:bg-space-700/60 transition-all font-medium tracking-wide">
+          <span>Studio & Tech</span>
+        </a>
+        <a href="#community" class="nav-link px-3.5 py-1.5 rounded-lg text-sm text-slate-300 hover:text-cyan-glow hover:bg-space-700/60 transition-all font-medium tracking-wide">
+          <span>Community</span>
+        </a>
+      </div>
+
+      <!-- Right Controls: Audio + Zero-G Toggle + Play Now -->
+      <div class="flex items-center space-x-2.5 sm:space-x-3.5">
+        
+        <!-- Audio Synth SFX Toggle -->
+        <button id="sfx-toggle-btn" title="Toggle Sci-Fi SFX Audio" class="p-2 rounded-xl bg-space-800/80 hover:bg-space-700 border border-white/10 text-slate-400 hover:text-cyan-glow transition-all text-xs flex items-center justify-center">
+          <svg id="sfx-icon-on" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg id="sfx-icon-off" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- ZERO-G MODE TOGGLE SWITCH -->
+        <div class="relative flex items-center">
+          <button id="zero-g-toggle" role="switch" aria-checked="false" title="Toggle Zero-G Physics Simulation" class="group relative flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-space-800/90 border border-cyan-glow/30 hover:border-cyan-glow transition-all duration-300">
+            <!-- Pulsing Orb Icon -->
+            <span class="zero-g-indicator-ring relative flex h-2.5 w-2.5">
+              <span id="zero-g-ping" class="absolute inline-flex h-full w-full rounded-full bg-cyan-glow opacity-0"></span>
+              <span id="zero-g-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-500 transition-colors duration-300"></span>
+            </span>
+            <div class="flex flex-col text-left">
+              <span class="text-[10px] font-orbitron font-bold uppercase tracking-wider text-slate-300 group-hover:text-cyan-glow transition-colors">
+                ZERO-G
+              </span>
+              <span id="zero-g-status-text" class="text-[8px] font-mono text-slate-400">OFF (1.0G)</span>
+            </div>
+            <!-- Toggle Pill Visual -->
+            <div class="w-8 h-4 bg-space-950 rounded-full border border-slate-700 p-0.5 flex items-center transition-colors duration-300" id="zero-g-switch-bar">
+              <div id="zero-g-thumb" class="w-3 h-3 rounded-full bg-slate-400 transition-transform duration-300"></div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Glowing Play Now Button -->
+        <a href="#games" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-cyan-glow text-space-950 font-orbitron font-bold text-xs uppercase tracking-wider hover:bg-white hover:shadow-cyan-glow transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
+          <span>Play Now</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-space-800/80 border border-white/10 text-slate-300 hover:text-cyan-glow">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-2 glass-panel rounded-2xl p-4 border border-cyan-glow/20 space-y-2">
+      <a href="#games" class="block px-3 py-2 rounded-lg text-sm font-orbitron text-slate-200 hover:bg-cyan-glow/10 hover:text-cyan-glow">
+        01 // Flagship Games
+      </a>
+      <a href="#esports" class="block px-3 py-2 rounded-lg text-sm font-orbitron text-slate-200 hover:bg-cyan-glow/10 hover:text-cyan-glow">
+        02 // Live Esports Arena
+      </a>
+      <a href="#studio" class="block px-3 py-2 rounded-lg text-sm font-orbitron text-slate-200 hover:bg-cyan-glow/10 hover:text-cyan-glow">
+        03 // Physics Engine & Studio
+      </a>
+      <a href="#community" class="block px-3 py-2 rounded-lg text-sm font-orbitron text-slate-200 hover:bg-cyan-glow/10 hover:text-cyan-glow">
+        04 // Discord & Orbit Community
+      </a>
+      <div class="pt-2 border-t border-white/10">
+        <a href="#games" class="w-full text-center block py-2.5 rounded-xl bg-cyan-glow text-space-950 font-orbitron font-bold text-xs uppercase tracking-wider shadow-cyan-glow">
+          Launch Arena (Play Now)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- 3. INTERACTIVE ZERO-G HERO SECTION -->
+  <!-- ========================================================= -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-16 pb-12 overflow-hidden">
+    
+    <!-- Ambient Glow Orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-glow/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-[450px] h-[450px] bg-neon-purple/20 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10 my-auto">
+      
+      <!-- Hero Left: Typography & CTAs -->
+      <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+        
+        <!-- Status Cyber Tag -->
+        <div class="zero-g-item inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-glow/30" style="--zg-duration: 5.2s; --zg-delay: 0.1s; --zg-offset-y: -22px; --zg-rot: -1.2deg;">
+          <span class="w-2 h-2 rounded-full bg-cyan-glow animate-pulse"></span>
+          <span class="text-xs font-orbitron tracking-widest text-cyan-glow uppercase font-semibold">
+            SYS_STATUS: ZERO-G CORE SYNCHRONIZED
+          </span>
+          <span class="text-[10px] font-mono text-slate-400 hidden sm:inline">// BUILD 4.08.2</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="zero-g-item text-4xl sm:text-6xl xl:text-7xl font-orbitron font-black tracking-tight leading-[1.08]" style="--zg-duration: 6s; --zg-delay: 0.2s; --zg-offset-y: -30px; --zg-rot: 1deg;">
+          <span class="text-white block">DEFY GRAVITY.</span>
+          <span class="block bg-gradient-to-r from-cyan-glow via-cyan-bright to-neon-magenta bg-clip-text text-transparent text-glow-cyan">
+            DOMINATE THE ARENA.
+          </span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="zero-g-item text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0" style="--zg-duration: 4.8s; --zg-delay: 0.3s; --zg-offset-y: -18px; --zg-rot: -0.8deg;">
+          Pioneering true 6-DOF omnidirectional physics, sub-millisecond netcode, and competitive high-stakes orbital warfare. Enter a universe where weight is obsolete and momentum is lethal.
+        </p>
+
+        <!-- Dual Call To Actions & Sound Cue -->
+        <div class="zero-g-item flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2" style="--zg-duration: 5.5s; --zg-delay: 0.4s; --zg-offset-y: -28px; --zg-rot: 1.5deg;">
+          
+          <!-- Explore Games CTA -->
+          <a href="#games" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-cyan-glow hover:bg-white text-space-950 font-orbitron font-extrabold text-sm uppercase tracking-wider shadow-cyan-glow hover:shadow-cyan-lg transition-all duration-300 flex items-center justify-center space-x-2 group">
+            <span>Explore Games</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+
+          <!-- Watch Showreel CTA (Modal Trigger) -->
+          <button id="showreel-open-btn" class="w-full sm:w-auto px-7 py-3.5 rounded-xl glass-panel hover:bg-space-700/80 text-white hover:text-cyan-glow font-orbitron font-bold text-sm uppercase tracking-wider border border-white/20 hover:border-cyan-glow transition-all duration-300 flex items-center justify-center space-x-2.5 group">
+            <span class="w-6 h-6 rounded-full bg-cyan-glow/20 flex items-center justify-center text-cyan-glow group-hover:bg-cyan-glow group-hover:text-space-950 transition-colors">
+              <svg class="w-3 h-3 ml-0.5 fill-current" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </span>
+            <span>Watch Showreel</span>
+          </button>
+        </div>
+
+        <!-- Telemetry Badges -->
+        <div class="zero-g-item pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 border-t border-white/10 text-xs font-mono text-slate-400" style="--zg-duration: 6.2s; --zg-delay: 0.5s; --zg-offset-y: -20px; --zg-rot: -1deg;">
+          <div class="flex items-center space-x-2">
+            <span class="text-cyan-glow font-bold">2.4M+</span>
+            <span>ACTIVE PILOTS</span>
+          </div>
+          <div class="w-1 h-1 rounded-full bg-slate-600"></div>
+          <div class="flex items-center space-x-2">
+            <span class="text-neon-magenta font-bold">0.00G</span>
+            <span>DUAL-VECTOR PHYSICS</span>
+          </div>
+          <div class="w-1 h-1 rounded-full bg-slate-600"></div>
+          <div class="flex items-center space-x-2">
+            <span class="text-neon-emerald font-bold">128-TICK</span>
+            <span>HYPER-NETCODE</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Right: Interactive 3D Holographic Artifact & HUD Cluster -->
+      <div class="lg:col-span-5 flex justify-center items-center relative">
+        
+        <!-- 3D Perspective interactive container -->
+        <div id="hero-artifact-container" class="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[440px] md:h-[440px] flex items-center justify-center preserve-3d cursor-crosshair group select-none">
+          
+          <!-- Outer Gyro Ring 1 (Electric Cyan) -->
+          <svg class="absolute inset-0 w-full h-full text-cyan-glow/50 animate-spin-slow transition-transform" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="92" stroke="currentColor" stroke-width="1.2" stroke-dasharray="12 16" fill="none"/>
+            <circle cx="100" cy="100" r="86" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 10" fill="none"/>
+          </svg>
+
+          <!-- Outer Gyro Ring 2 (Ultraviolet Purple) -->
+          <svg class="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] text-neon-magenta/60 animate-spin-reverse-slow" viewBox="0 0 200 200">
+            <ellipse cx="100" cy="100" rx="90" ry="40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 8" fill="none" transform="rotate(45 100 100)"/>
+            <ellipse cx="100" cy="100" rx="90" ry="40" stroke="currentColor" stroke-width="1" stroke-dasharray="14 10" fill="none" transform="rotate(-45 100 100)"/>
+          </svg>
+
+          <!-- Floating HUD Telemetry Card 1 (Top Left) -->
+          <div id="hud-card-1" class="zero-g-item absolute -top-4 -left-6 glass-panel rounded-xl p-3 border border-cyan-glow/40 shadow-cyan-glow font-mono text-[11px] space-y-1 transition-transform duration-200 pointer-events-none z-20" style="--zg-duration: 4.2s; --zg-delay: 0.1s; --zg-offset-y: -35px; --zg-rot: -3deg;">
+            <div class="flex items-center justify-between space-x-3 text-cyan-glow">
+              <span class="font-bold font-orbitron">GRAV-LOCK</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-glow animate-ping"></span>
+            </div>
+            <div class="text-slate-300">VECTOR: [0, 0, 0] m/s²</div>
+            <div class="text-[9px] text-slate-400">MASS SUPPRESSION: 100%</div>
+          </div>
+
+          <!-- Floating HUD Telemetry Card 2 (Bottom Right) -->
+          <div id="hud-card-2" class="zero-g-item absolute -bottom-6 -right-6 glass-panel rounded-xl p-3 border border-neon-magenta/40 shadow-purple-glow font-mono text-[11px] space-y-1 transition-transform duration-200 pointer-events-none z-20" style="--zg-duration: 4.7s; --zg-delay: 0.4s; --zg-offset-y: -30px; --zg-rot: 3.5deg;">
+            <div class="flex items-center justify-between space-x-3 text-neon-magenta">
+              <span class="font-bold font-orbitron">ORBIT VELOCITY</span>
+              <span class="text-[9px] px-1 bg-neon-purple/20 rounded">MACH 22</span>
+            </div>
+            <div class="text-slate-300">27,450 KM/H</div>
+            <div class="text-[9px] text-slate-400">ALTITUDE: 412 KM (LEO)</div>
+          </div>
+
+          <!-- Center Suspended Geometric Anti-Gravity Core Artifact -->
+          <div id="hud-core" class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl glass-panel-glow flex items-center justify-center border-2 border-cyan-glow shadow-dual-glow transform transition-all duration-300 group-hover:scale-105">
+            
+            <!-- Interior Animated SVG Hologram -->
+            <svg class="w-36 h-36 text-cyan-glow animate-pulse-glow" viewBox="0 0 120 120" fill="none">
+              <!-- Holographic Octahedron / Polyhedron -->
+              <polygon points="60,10 105,60 60,110 15,60" stroke="#00F0FF" stroke-width="2" fill="url(#core-grad)" fill-opacity="0.25"/>
+              <line x1="60" y1="10" x2="60" y2="110" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <line x1="15" y1="60" x2="105" y2="60" stroke="#BD00FF" stroke-width="1.5"/>
+              <polygon points="60,30 90,60 60,90 30,60" stroke="#BD00FF" stroke-width="1.5" fill="#8A2BE2" fill-opacity="0.2"/>
+              <!-- Core light dot -->
+              <circle cx="60" cy="60" r="7" fill="#00F0FF" filter="drop-shadow(0 0 8px #00F0FF)"/>
+              <defs>
+                <linearGradient id="core-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#BD00FF" stop-opacity="0.8"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- Hologram Scanline Bar -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-glow/15 to-transparent h-12 w-full animate-scanline pointer-events-none rounded-2xl"></div>
+
+            <!-- Core Label Badge -->
+            <div class="absolute bottom-2 font-mono text-[9px] text-cyan-glow tracking-widest bg-space-950/80 px-2 py-0.5 rounded border border-cyan-glow/30">
+              CORE-SINGULARITY-V4
+            </div>
+
+          </div>
+
+          <!-- Circular Orbiting Nano Particles (SVGs) -->
+          <div class="absolute w-72 h-72 rounded-full border border-cyan-glow/15 pointer-events-none animate-spin-slow">
+            <div class="w-3 h-3 rounded-full bg-cyan-glow absolute -top-1.5 left-1/2 transform -translate-x-1/2 shadow-cyan-glow"></div>
+          </div>
+          <div class="absolute w-60 h-60 rounded-full border border-neon-magenta/20 pointer-events-none animate-spin-reverse-slow">
+            <div class="w-2.5 h-2.5 rounded-full bg-neon-magenta absolute -bottom-1 left-1/2 transform -translate-x-1/2 shadow-purple-glow"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Scroll Down Hint Indicator -->
+    <a href="#games" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-1 text-slate-400 hover:text-cyan-glow transition-colors z-10 group">
+      <span class="text-[10px] font-orbitron tracking-widest uppercase">DISCOVER ARCHIVES</span>
+      <svg class="w-4 h-4 animate-bounce text-cyan-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 4. FEATURED GAMES SHOWCASE (BENTO GRID) -->
+  <!-- ========================================================= -->
+  <section id="games" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+      <div>
+        <div class="inline-flex items-center space-x-2 text-xs font-orbitron tracking-widest text-cyan-glow uppercase font-semibold mb-2">
+          <span class="w-2 h-2 rounded bg-cyan-glow"></span>
+          <span>FLAGSHIP RELEASES</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold tracking-tight text-white">
+          WORLDS UNBOUND <span class="bg-gradient-to-r from-cyan-glow to-neon-magenta bg-clip-text text-transparent">BY GRAVITY</span>
+        </h2>
+      </div>
+      <p class="text-slate-400 text-sm sm:text-base max-w-md font-normal">
+        Three competitive experiences engineered from the ground up for true 6-DOF zero-gravity physics and peerless esports immersion.
+      </p>
+    </div>
+
+    <!-- Bento Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+      
+      <!-- ================= CARD 1: ORBITFALL (Tactical Zero-G Shooter) ================= -->
+      <div class="zero-g-item lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-cyan-glow/20 hover:border-cyan-glow/70 transition-all duration-500 hover:-translate-y-3 group hover:shadow-cyan-glow flex flex-col justify-between relative overflow-hidden"
+           style="--zg-duration: 5.8s; --zg-delay: 0.15s; --zg-offset-y: -28px; --zg-rot: -1.2deg;">
+        
+        <!-- Ambient Background Glow & Cyber Grid -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-cyan-glow/10 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-glow/20 transition-all"></div>
+        <div class="absolute top-0 right-0 p-6 pointer-events-none opacity-20 group-hover:opacity-60 transition-opacity">
+          <svg class="w-28 h-28 text-cyan-glow" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <circle cx="50" cy="50" r="45" stroke-width="0.8" stroke-dasharray="4 8"/>
+            <line x1="50" y1="5" x2="50" y2="95" stroke-width="0.5"/>
+            <line x1="5" y1="50" x2="95" y2="50" stroke-width="0.5"/>
+          </svg>
+        </div>
+
+        <div>
+          <!-- Badges & Genre -->
+          <div class="flex flex-wrap items-center gap-2.5 mb-5">
+            <span class="cyber-cut-sm px-3 py-1 rounded bg-cyan-glow text-space-950 font-orbitron font-extrabold text-[11px] tracking-wider uppercase">
+              ORBITFALL
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-space-800 text-cyan-glow border border-cyan-glow/30 text-xs font-mono">
+              6DOF TACTICAL SHOOTER
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-neon-purple/20 text-neon-magenta border border-neon-magenta/30 text-xs font-mono">
+              SEASON 03: ECLIPSE
+            </span>
+          </div>
+
+          <!-- Title & Hook -->
+          <h3 class="text-2xl sm:text-4xl font-orbitron font-bold text-white group-hover:text-cyan-glow transition-colors mb-3">
+            ORBITFALL: BREACH ZERO
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
+            Infiltrate crumbling deep-space stations in high-stakes 5v5 tactical firefights. Master omnidirectional thrust vectoring, kinetic recoil manipulation, magnetic wall boots, and instant hull decompressions.
+          </p>
+
+          <!-- Custom Sci-Fi Cover Art / SVG Illustration -->
+          <div class="relative w-full h-52 sm:h-64 rounded-2xl bg-space-850/90 border border-white/10 overflow-hidden mb-6 flex items-center justify-center">
+            
+            <!-- SVG Sci-Fi Battle Scenario Artwork -->
+            <svg class="w-full h-full object-cover" viewBox="0 0 500 240" fill="none">
+              <!-- Deep Space Gradient Background -->
+              <rect width="500" height="240" fill="#070712"/>
+              <!-- Stars -->
+              <circle cx="45" cy="30" r="1.5" fill="#FFF" opacity="0.6"/>
+              <circle cx="120" cy="80" r="1.2" fill="#00F0FF" opacity="0.8"/>
+              <circle cx="280" cy="40" r="2" fill="#FFF" opacity="0.9"/>
+              <circle cx="430" cy="110" r="1.5" fill="#BD00FF" opacity="0.7"/>
+              <circle cx="380" cy="25" r="1.2" fill="#FFF" opacity="0.6"/>
+              <circle cx="70" cy="180" r="1.8" fill="#00F0FF" opacity="0.8"/>
+
+              <!-- Orbital Ring Structure -->
+              <ellipse cx="250" cy="120" rx="210" ry="80" stroke="#00F0FF" stroke-width="2" stroke-dasharray="8 6" opacity="0.4"/>
+              <ellipse cx="250" cy="120" rx="170" ry="60" stroke="#BD00FF" stroke-width="1.5" opacity="0.3"/>
+              
+              <!-- Station Central Hub -->
+              <rect x="220" y="80" width="60" height="80" rx="8" fill="#121226" stroke="#00F0FF" stroke-width="2"/>
+              <circle cx="250" cy="120" r="16" fill="#00F0FF" opacity="0.3"/>
+              <circle cx="250" cy="120" r="8" fill="#00F0FF"/>
+
+              <!-- Solar Arrays -->
+              <line x1="160" y1="120" x2="220" y2="120" stroke="#00F0FF" stroke-width="3"/>
+              <rect x="140" y="90" width="20" height="60" rx="2" fill="#0D0D1F" stroke="#00F0FF" stroke-width="1"/>
+              <line x1="280" y1="120" x2="340" y2="120" stroke="#00F0FF" stroke-width="3"/>
+              <rect x="340" y="90" width="20" height="60" rx="2" fill="#0D0D1F" stroke="#00F0FF" stroke-width="1"/>
+
+              <!-- Tactical Laser Rails & Thrust Trails -->
+              <line x1="80" y1="40" x2="250" y2="120" stroke="#00F0FF" stroke-width="2" stroke-dasharray="6 4" opacity="0.8"/>
+              <line x1="420" y1="200" x2="250" y2="120" stroke="#FF007F" stroke-width="2" opacity="0.7"/>
+
+              <!-- Tactical Pilot Silhouettes with Jetpacks -->
+              <!-- Pilot 1 -->
+              <g transform="translate(90, 50) rotate(15)">
+                <ellipse cx="15" cy="15" rx="8" ry="12" fill="#1C1C35" stroke="#00F0FF" stroke-width="1.5"/>
+                <circle cx="15" cy="6" r="5" fill="#00F0FF"/>
+                <!-- Thruster Flame -->
+                <polygon points="10,27 20,27 15,38" fill="#00F0FF" opacity="0.9"/>
+              </g>
+
+              <!-- Pilot 2 -->
+              <g transform="translate(390, 160) rotate(-25)">
+                <ellipse cx="15" cy="15" rx="8" ry="12" fill="#1C1C35" stroke="#FF007F" stroke-width="1.5"/>
+                <circle cx="15" cy="6" r="5" fill="#FF007F"/>
+                <!-- Thruster Flame -->
+                <polygon points="10,27 20,27 15,38" fill="#FF007F" opacity="0.9"/>
+              </g>
+
+              <!-- HUD Reticle Overlay -->
+              <circle cx="250" cy="120" r="32" stroke="#00F0FF" stroke-width="1" stroke-dasharray="4 6" opacity="0.7"/>
+              <text x="210" y="35" fill="#00F0FF" font-family="monospace" font-size="10" letter-spacing="2">TARGET LOCKED: SECTOR 4</text>
+            </svg>
+
+            <!-- Holographic Badge inside visual -->
+            <div class="absolute bottom-3 left-3 glass-panel px-3 py-1 rounded-lg text-xs font-mono text-cyan-glow border border-cyan-glow/30 flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-glow animate-ping"></span>
+              <span>128-TICK DEDICATED HOSTS</span>
+            </div>
+            
+            <div class="absolute top-3 right-3 bg-space-950/80 px-2.5 py-1 rounded text-[11px] font-mono text-slate-300 border border-white/10">
+              UNREAL ENGINE 5.5
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions & Platform Support -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-white/10">
+          <!-- Platforms -->
+          <div class="flex items-center space-x-3 text-slate-400">
+            <span class="text-xs font-mono text-slate-500 uppercase">PLATFORMS:</span>
+            <!-- Steam Icon -->
+            <span class="px-2.5 py-1 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10 hover:border-cyan-glow transition-colors">PC STEAM</span>
+            <span class="px-2.5 py-1 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10 hover:border-cyan-glow transition-colors">PS5</span>
+            <span class="px-2.5 py-1 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10 hover:border-cyan-glow transition-colors">XBOX SERIES X</span>
+          </div>
+
+          <!-- Action Button -->
+          <button onclick="openTrailerModal('ORBITFALL: BREACH ZERO', 'Tactical 6DOF Zero-G Competitive Shooter')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-glow/20 hover:bg-cyan-glow text-cyan-glow hover:text-space-950 font-orbitron font-bold text-xs uppercase tracking-wider border border-cyan-glow/40 transition-all duration-300 flex items-center justify-center space-x-2">
+            <span>Launch Trailer</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= CARD 2: ZERO-G DRIFT (Anti-Grav Racing) ================= -->
+      <div class="zero-g-item lg:col-span-5 glass-panel rounded-3xl p-6 sm:p-8 border border-neon-magenta/20 hover:border-neon-magenta/70 transition-all duration-500 hover:-translate-y-3 group hover:shadow-purple-glow flex flex-col justify-between relative overflow-hidden"
+           style="--zg-duration: 5.4s; --zg-delay: 0.3s; --zg-offset-y: -24px; --zg-rot: 1.6deg;">
+        
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-neon-purple/15 rounded-full blur-3xl pointer-events-none group-hover:bg-neon-purple/25 transition-all"></div>
+
+        <div>
+          <!-- Badges & Genre -->
+          <div class="flex flex-wrap items-center gap-2.5 mb-5">
+            <span class="cyber-cut-sm px-3 py-1 rounded bg-neon-magenta text-space-950 font-orbitron font-extrabold text-[11px] tracking-wider uppercase">
+              ZERO-G DRIFT
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-neon-purple/20 text-neon-magenta border border-neon-magenta/30 text-xs font-mono">
+              ANTI-MATTER HYPER-RACING
+            </span>
+          </div>
+
+          <!-- Title & Hook -->
+          <h3 class="text-2xl sm:text-3xl font-orbitron font-bold text-white group-hover:text-neon-magenta transition-colors mb-3">
+            ZERO-G DRIFT: APEX VELOCITY
+          </h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Supersonic magnetic coaster circuits suspended over fractured moons. Drift at 1,400 km/h with 360° corkscrews, dual-vector airbrakes, and kinetic plasma drafting.
+          </p>
+
+          <!-- Custom Sci-Fi Cover Art / SVG Illustration -->
+          <div class="relative w-full h-44 sm:h-52 rounded-2xl bg-space-850/90 border border-white/10 overflow-hidden mb-6 flex items-center justify-center">
+            <svg class="w-full h-full object-cover" viewBox="0 0 400 200" fill="none">
+              <!-- Dark Void -->
+              <rect width="400" height="200" fill="#0A0714"/>
+              
+              <!-- Giant Fractured Moon in background -->
+              <circle cx="340" cy="60" r="45" fill="#1C1438" stroke="#BD00FF" stroke-width="1.5" opacity="0.6"/>
+              <path d="M320 30 L360 85 M310 60 L370 70" stroke="#BD00FF" stroke-width="1" opacity="0.4"/>
+
+              <!-- Rollercoaster Magnetic Track loops -->
+              <path d="M-20 180 Q100 40 220 120 T420 80" stroke="#BD00FF" stroke-width="4" fill="none" opacity="0.8"/>
+              <path d="M-20 188 Q100 48 220 128 T420 88" stroke="#00F0FF" stroke-width="2" fill="none" opacity="0.6"/>
+
+              <!-- Speed lines -->
+              <line x1="30" y1="160" x2="160" y2="100" stroke="#BD00FF" stroke-width="1" stroke-dasharray="10 15" opacity="0.7"/>
+              <line x1="120" y1="140" x2="250" y2="105" stroke="#00F0FF" stroke-width="1" stroke-dasharray="12 20" opacity="0.7"/>
+
+              <!-- Futuristic Hovercraft Racer -->
+              <g transform="translate(180, 95) rotate(-18)">
+                <!-- Ship Body -->
+                <polygon points="45,15 10,5 0,15 10,25" fill="#16122E" stroke="#BD00FF" stroke-width="2"/>
+                <polygon points="35,15 15,10 5,15 15,20" fill="#BD00FF" opacity="0.4"/>
+                <!-- Cockpit Glow -->
+                <polygon points="30,15 20,12 18,15 20,18" fill="#00F0FF"/>
+                <!-- Neon Jet Trails -->
+                <polygon points="0,11 -35,5 0,15" fill="#BD00FF" opacity="0.9"/>
+                <polygon points="0,15 -45,15 0,16" fill="#00F0FF" opacity="0.8"/>
+                <polygon points="0,19 -35,25 0,15" fill="#BD00FF" opacity="0.9"/>
+              </g>
+
+              <text x="20" y="30" fill="#BD00FF" font-family="monospace" font-size="10" letter-spacing="1.5">SPEED: 1,420 KM/H // BOOST READY</text>
+            </svg>
+
+            <div class="absolute bottom-3 left-3 bg-space-950/80 px-2.5 py-1 rounded text-[11px] font-mono text-neon-magenta border border-neon-magenta/30 flex items-center space-x-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-neon-magenta animate-ping"></span>
+              <span>120 FPS NATIVE // VR READY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-white/10">
+          <div class="flex items-center space-x-2 text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10">PC</span>
+            <span class="px-2 py-0.5 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10">PS5 VR2</span>
+            <span class="px-2 py-0.5 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10">QUEST 3</span>
+          </div>
+
+          <button onclick="openTrailerModal('ZERO-G DRIFT: APEX VELOCITY', 'Anti-Matter Kinetic Racing')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-neon-magenta/20 hover:bg-neon-magenta text-neon-magenta hover:text-space-950 font-orbitron font-bold text-xs uppercase tracking-wider border border-neon-magenta/40 transition-all duration-300 flex items-center justify-center space-x-2">
+            <span>Watch Race</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= CARD 3: NEBULA PROTOCOL (Deep-Space Extraction RPG) ================= -->
+      <div class="zero-g-item lg:col-span-5 glass-panel rounded-3xl p-6 sm:p-8 border border-neon-amber/20 hover:border-neon-amber/70 transition-all duration-500 hover:-translate-y-3 group hover:shadow-[0_0_30px_rgba(255,184,0,0.3)] flex flex-col justify-between relative overflow-hidden"
+           style="--zg-duration: 6.2s; --zg-delay: 0.25s; --zg-offset-y: -26px; --zg-rot: -1.8deg;">
+        
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-neon-amber/10 rounded-full blur-3xl pointer-events-none group-hover:bg-neon-amber/20 transition-all"></div>
+
+        <div>
+          <!-- Badges -->
+          <div class="flex flex-wrap items-center gap-2.5 mb-5">
+            <span class="cyber-cut-sm px-3 py-1 rounded bg-neon-amber text-space-950 font-orbitron font-extrabold text-[11px] tracking-wider uppercase">
+              NEBULA PROTOCOL
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-neon-amber/20 text-neon-amber border border-neon-amber/30 text-xs font-mono">
+              EXTRACTION SURVIVAL RPG
+            </span>
+          </div>
+
+          <!-- Title & Hook -->
+          <h3 class="text-2xl sm:text-3xl font-orbitron font-bold text-white group-hover:text-neon-amber transition-colors mb-3">
+            NEBULA PROTOCOL: VOID HARVEST
+          </h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            Board drifting derelict dreadnoughts in hazardous quarantine nebulae. Scavenge ancient quantum cores, bypass rogue AI security turrets, and escape before the sector collapses into the black hole.
+          </p>
+
+          <!-- Custom Sci-Fi Cover Art / SVG Illustration -->
+          <div class="relative w-full h-44 sm:h-52 rounded-2xl bg-space-850/90 border border-white/10 overflow-hidden mb-6 flex items-center justify-center">
+            <svg class="w-full h-full object-cover" viewBox="0 0 400 200" fill="none">
+              <!-- Deep Space Amber / Violet Fog -->
+              <rect width="400" height="200" fill="#0C0A10"/>
+              
+              <!-- Nebula Cloud Shapes -->
+              <circle cx="120" cy="100" r="90" fill="#FFB800" opacity="0.1" filter="blur(20px)"/>
+              <circle cx="280" cy="90" r="80" fill="#8A2BE2" opacity="0.15" filter="blur(20px)"/>
+
+              <!-- Derelict Mega Dreadnought Silhouette -->
+              <g transform="translate(140, 40) rotate(8)">
+                <polygon points="120,40 20,20 0,40 20,60" fill="#1A1828" stroke="#FFB800" stroke-width="1.5"/>
+                <polygon points="80,30 30,10 10,20 50,35" fill="#141220" stroke="#FFB800" stroke-width="1"/>
+                <circle cx="60" cy="40" r="4" fill="#FFB800"/>
+                <line x1="120" y1="40" x2="160" y2="40" stroke="#FFB800" stroke-dasharray="2 4" stroke-width="1.5"/>
+              </g>
+
+              <!-- Space salvage probe scanning beam -->
+              <polygon points="320,130 180,70 170,110" fill="url(#scan-grad)" opacity="0.4"/>
+              <circle cx="320" cy="130" r="7" fill="#FFB800" stroke="#FFF" stroke-width="1"/>
+
+              <!-- Grid coordinate lines -->
+              <line x1="50" y1="0" x2="50" y2="200" stroke="#FFB800" stroke-width="0.5" stroke-dasharray="3 6" opacity="0.3"/>
+              <line x1="0" y1="150" x2="400" y2="150" stroke="#FFB800" stroke-width="0.5" stroke-dasharray="3 6" opacity="0.3"/>
+
+              <text x="20" y="30" fill="#FFB800" font-family="monospace" font-size="10">RADIATION: CRITICAL // EXTRACTION 03:45</text>
+
+              <defs>
+                <linearGradient id="scan-grad" x1="100%" y1="100%" x2="0%" y2="0%">
+                  <stop offset="0%" stop-color="#FFB800" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#FFB800" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div class="absolute bottom-3 left-3 bg-space-950/80 px-2.5 py-1 rounded text-[11px] font-mono text-neon-amber border border-neon-amber/30">
+              PERMADEATH HARDCORE // PVPVE
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-white/10">
+          <div class="flex items-center space-x-2 text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10">STEAM</span>
+            <span class="px-2 py-0.5 rounded bg-space-800 text-xs font-mono text-slate-300 border border-white/10">EPIC GAMES</span>
+          </div>
+
+          <button onclick="openTrailerModal('NEBULA PROTOCOL', 'Deep-Space Extraction Survival RPG')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-neon-amber/20 hover:bg-neon-amber text-neon-amber hover:text-space-950 font-orbitron font-bold text-xs uppercase tracking-wider border border-neon-amber/40 transition-all duration-300 flex items-center justify-center space-x-2">
+            <span>Watch Briefing</span>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= CARD 4 (Bento Extra): INTERACTIVE PHYSICS ENGINE SANDBOX ================= -->
+      <div class="zero-g-item lg:col-span-4 glass-panel rounded-3xl p-6 sm:p-7 border border-cyan-glow/20 hover:border-cyan-glow/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+           style="--zg-duration: 5.1s; --zg-delay: 0.35s; --zg-offset-y: -22px; --zg-rot: 1deg;">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-orbitron font-bold text-cyan-glow tracking-wider uppercase">TECH LAB: SINGULARITY V4</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 bg-cyan-glow/10 text-cyan-glow rounded border border-cyan-glow/20">INTERACTIVE</span>
+          </div>
+          <h4 class="text-lg font-orbitron font-bold text-white mb-2">Real-Time Gravity Well Sandbox</h4>
+          <p class="text-xs text-slate-400 mb-4">Click and drag inside this simulation frame to place gravitational singularities and slingshot micro-satellites.</p>
+          
+          <!-- Mini Interactive Canvas Sandbox -->
+          <div class="relative w-full h-44 rounded-xl bg-space-950 border border-cyan-glow/30 overflow-hidden">
+            <canvas id="mini-physics-canvas" class="w-full h-full cursor-pointer"></canvas>
+            <div class="absolute bottom-2 left-2 text-[9px] font-mono text-cyan-glow/80 pointer-events-none bg-space-950/70 px-1.5 py-0.5 rounded">
+              TOUCH/CLICK TO SPAWN MASS
+            </div>
+            <button id="reset-physics-btn" class="absolute top-2 right-2 text-[9px] font-mono text-slate-400 hover:text-cyan-glow bg-space-850 px-2 py-0.5 rounded border border-white/10 hover:border-cyan-glow transition-colors">
+              CLEAR
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-white/10 mt-4 flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <span>COLLISION: CONTINUOUS</span>
+          <span class="text-cyan-glow font-bold">240HZ INTERNAL TICK</span>
+        </div>
+      </div>
+
+      <!-- ================= CARD 5 (Bento Extra): GLOBAL LOW-LATENCY NETCODE MAP ================= -->
+      <div class="zero-g-item lg:col-span-3 glass-panel rounded-3xl p-6 sm:p-7 border border-neon-purple/20 hover:border-neon-purple/60 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+           style="--zg-duration: 5.6s; --zg-delay: 0.4s; --zg-offset-y: -25px; --zg-rot: -1deg;">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-orbitron font-bold text-neon-magenta tracking-wider uppercase">NETCODE FABRIC</span>
+            <span class="w-2 h-2 rounded-full bg-neon-emerald animate-ping"></span>
+          </div>
+          <h4 class="text-lg font-orbitron font-bold text-white mb-2">Sub-15ms Global Mesh</h4>
+          <p class="text-xs text-slate-400 mb-4">Antigravity edge relays route packet vectors through low-earth satellite constellations and fiber backbones.</p>
+
+          <!-- Ping Matrix List -->
+          <div class="space-y-2 font-mono text-xs">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-space-850/80 border border-white/5">
+              <span class="text-slate-300 flex items-center space-x-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-neon-emerald"></span>
+                <span>TOKYO (TYO-01)</span>
+              </span>
+              <span class="text-neon-emerald font-bold">14 ms</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-space-850/80 border border-white/5">
+              <span class="text-slate-300 flex items-center space-x-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-neon-emerald"></span>
+                <span>FRANKFURT (FRA-04)</span>
+              </span>
+              <span class="text-neon-emerald font-bold">18 ms</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-space-850/80 border border-white/5">
+              <span class="text-slate-300 flex items-center space-x-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-neon-emerald"></span>
+                <span>US-EAST (VA-02)</span>
+              </span>
+              <span class="text-neon-emerald font-bold">9 ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-white/10 mt-4 flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <span>PACKET LOSS: 0.00%</span>
+          <span class="text-neon-emerald font-bold">ONLINE</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 5. ESPORTS & LIVE ARENA HUB -->
+  <!-- ========================================================= -->
+  <section id="esports" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+      <div>
+        <div class="inline-flex items-center space-x-2 text-xs font-orbitron tracking-widest text-neon-pink uppercase font-semibold mb-2">
+          <span class="w-2 h-2 rounded bg-neon-pink animate-pulse"></span>
+          <span>COMPETITIVE CIRCUIT 2026</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold tracking-tight text-white">
+          THE APEX OF <span class="bg-gradient-to-r from-neon-pink via-neon-magenta to-cyan-glow bg-clip-text text-transparent">ZERO-G ESPORTS</span>
+        </h2>
+      </div>
+      
+      <!-- Tournament Prize Pool Badge -->
+      <div class="glass-panel px-6 py-3 rounded-2xl border border-neon-pink/30 flex items-center space-x-4 shadow-[0_0_20px_rgba(255,0,127,0.2)]">
+        <div class="text-right font-mono">
+          <div class="text-[10px] text-slate-400 uppercase tracking-widest">WORLD CUP PRIZE POOL</div>
+          <div class="text-xl sm:text-2xl font-orbitron font-black text-white text-glow-purple">$1,250,000 USD</div>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-neon-pink/20 flex items-center justify-center text-neon-pink border border-neon-pink/40">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="7"></circle>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arena Grid: Left Live Twitch Mockup, Right Match Bracket & Schedule -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- ================= LEFT: LIVE ON TWITCH STREAM PREVIEW CARD ================= -->
+      <div class="zero-g-item lg:col-span-7 glass-panel-glow rounded-3xl p-5 sm:p-7 border border-cyan-glow/30 shadow-dual-glow relative overflow-hidden"
+           style="--zg-duration: 5.7s; --zg-delay: 0.1s; --zg-offset-y: -26px; --zg-rot: -1.2deg;">
+        
+        <!-- Header Bar -->
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded bg-neon-pink text-white font-orbitron font-bold text-[10px] tracking-wider uppercase animate-pulse">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span>LIVE ON TWITCH</span>
+            </span>
+            <span class="text-xs font-mono text-slate-300">CHANNEL: <span class="text-cyan-glow font-bold">/AntigravityArena</span></span>
+          </div>
+
+          <div class="flex items-center space-x-2 text-xs font-mono text-slate-400">
+            <svg class="w-4 h-4 text-cyan-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            <span id="live-viewer-count" class="text-white font-bold">52,840</span>
+            <span class="hidden sm:inline">VIEWERS</span>
+          </div>
+        </div>
+
+        <!-- Simulated Video Player Screen Frame with Custom HUD Canvas -->
+        <div class="relative w-full aspect-video rounded-2xl bg-space-950 border border-cyan-glow/30 overflow-hidden shadow-2xl">
+          
+          <!-- Canvas for Animated Sci-Fi Esports Match Simulation -->
+          <canvas id="stream-simulation-canvas" class="w-full h-full object-cover"></canvas>
+
+          <!-- Top Overlay: Match Scoreboard -->
+          <div class="absolute top-3 inset-x-3 flex justify-between items-center pointer-events-none">
+            <div class="glass-panel px-3 py-1.5 rounded-lg border border-cyan-glow/40 flex items-center space-x-3">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded bg-cyan-glow flex items-center justify-center text-[9px] font-bold text-space-950 font-orbitron">V</span>
+                <span class="font-orbitron font-bold text-xs text-white">VORTEX</span>
+              </div>
+              <span class="font-orbitron font-extrabold text-sm text-cyan-glow">12</span>
+              <span class="text-slate-500 font-mono text-xs">:</span>
+              <span class="font-orbitron font-extrabold text-sm text-neon-magenta">11</span>
+              <div class="flex items-center space-x-2">
+                <span class="font-orbitron font-bold text-xs text-white">ECLIPSE 9</span>
+                <span class="w-3 h-3 rounded bg-neon-magenta flex items-center justify-center text-[9px] font-bold text-space-950 font-orbitron">E</span>
+              </div>
+            </div>
+
+            <div class="glass-panel px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-neon-pink font-bold">
+              OVERTIME // MAP 3
+            </div>
+          </div>
+
+          <!-- Bottom Overlay: Stream Controls & Kill Feed -->
+          <div class="absolute bottom-3 inset-x-3 flex justify-between items-end pointer-events-none">
+            <!-- Simulated Kill Feed -->
+            <div id="stream-killfeed" class="space-y-1 text-[10px] font-mono text-slate-300">
+              <div class="glass-panel px-2 py-0.5 rounded border border-white/10 flex items-center space-x-1.5 opacity-90">
+                <span class="text-cyan-glow font-bold">VTX.KAIZEN</span>
+                <span class="text-red-400 font-bold">[RAILGUN]</span>
+                <span class="text-slate-400">ECL.VOX</span>
+              </div>
+            </div>
+
+            <!-- Player interactive control buttons -->
+            <div class="pointer-events-auto flex items-center space-x-2">
+              <button id="stream-sound-btn" class="glass-panel hover:bg-space-700 p-2 rounded-lg border border-white/20 text-white hover:text-cyan-glow transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              </button>
+              <button onclick="openTrailerModal('ORBITFALL WORLD FINALS', 'Vortex vs Eclipse 9 Live Broadcast')" class="glass-panel hover:bg-cyan-glow hover:text-space-950 px-3 py-1.5 rounded-lg border border-cyan-glow/40 text-xs font-orbitron font-bold text-cyan-glow transition-all">
+                FULLSCREEN (4K)
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Simulated Live Chat Ticker Under Stream -->
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+            <span>LIVE ARENA CHAT</span>
+            <span class="text-[10px] text-cyan-glow">SLOW MODE: OFF</span>
+          </div>
+          <div id="live-chat-box" class="h-16 overflow-hidden space-y-1 font-mono text-xs text-slate-300">
+            <!-- Chat items dynamically injected via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT: TOURNAMENT COUNTDOWN & MATCH SCHEDULE ================= -->
+      <div class="zero-g-item lg:col-span-5 space-y-6"
+           style="--zg-duration: 5.3s; --zg-delay: 0.3s; --zg-offset-y: -22px; --zg-rot: 1.4deg;">
+        
+        <!-- Countdown Timer Card -->
+        <div class="glass-panel rounded-3xl p-6 border border-cyan-glow/30 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-orbitron font-bold text-cyan-glow uppercase tracking-wider">GRAND FINALS COMMENCES IN</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 bg-space-850 text-slate-400 rounded border border-white/10">UTC TIME</span>
+          </div>
+
+          <!-- Dynamic 4-Block Countdown Timer -->
+          <div class="grid grid-cols-4 gap-2 text-center">
+            <div class="bg-space-850/90 rounded-xl p-3 border border-cyan-glow/20">
+              <div id="cd-days" class="text-2xl sm:text-3xl font-orbitron font-black text-white text-glow-cyan">02</div>
+              <div class="text-[9px] font-mono text-slate-400 uppercase mt-1">DAYS</div>
+            </div>
+            <div class="bg-space-850/90 rounded-xl p-3 border border-cyan-glow/20">
+              <div id="cd-hours" class="text-2xl sm:text-3xl font-orbitron font-black text-white text-glow-cyan">14</div>
+              <div class="text-[9px] font-mono text-slate-400 uppercase mt-1">HOURS</div>
+            </div>
+            <div class="bg-space-850/90 rounded-xl p-3 border border-cyan-glow/20">
+              <div id="cd-minutes" class="text-2xl sm:text-3xl font-orbitron font-black text-white text-glow-cyan">38</div>
+              <div class="text-[9px] font-mono text-slate-400 uppercase mt-1">MINUTES</div>
+            </div>
+            <div class="bg-space-850/90 rounded-xl p-3 border border-cyan-glow/20">
+              <div id="cd-seconds" class="text-2xl sm:text-3xl font-orbitron font-black text-cyan-glow animate-pulse">42</div>
+              <div class="text-[9px] font-mono text-slate-400 uppercase mt-1">SECONDS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Match Ticker & Bracket List -->
+        <div class="glass-panel rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <h3 class="font-orbitron font-bold text-base text-white">ORBITAL BRACKET SCHEDULE</h3>
+            <span class="text-xs font-mono text-cyan-glow">STAGE 03 / RO8</span>
+          </div>
+
+          <!-- Match Item 1 (Live Now) -->
+          <div class="p-3.5 rounded-2xl bg-space-850/90 border border-cyan-glow/30 hover:border-cyan-glow transition-all flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-neon-pink animate-ping"></span>
+                <span class="text-[10px] font-mono text-neon-pink font-bold uppercase">LIVE NOW // MAP 3</span>
+              </div>
+              <div class="font-orbitron font-bold text-sm text-white flex items-center space-x-2">
+                <span class="text-cyan-glow">VORTEX</span>
+                <span class="text-slate-500 font-sans text-xs">VS</span>
+                <span class="text-neon-magenta">ECLIPSE 9</span>
+              </div>
+            </div>
+            <div class="text-right font-mono">
+              <span class="text-xs font-bold text-cyan-glow bg-cyan-glow/10 px-2 py-1 rounded border border-cyan-glow/20">
+                WATCH
+              </span>
+            </div>
+          </div>
+
+          <!-- Match Item 2 (Next in line) -->
+          <div class="p-3.5 rounded-2xl bg-space-850/60 border border-white/5 hover:border-white/20 transition-all flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="text-[10px] font-mono text-slate-400 uppercase">TODAY 19:30 UTC // BO5</div>
+              <div class="font-orbitron font-bold text-sm text-slate-200 flex items-center space-x-2">
+                <span>NOVA SYNDICATE</span>
+                <span class="text-slate-500 font-sans text-xs">VS</span>
+                <span>VOID WALKERS</span>
+              </div>
+            </div>
+            <div class="text-right font-mono text-xs text-slate-400">
+              IN 2H 15M
+            </div>
+          </div>
+
+          <!-- Match Item 3 -->
+          <div class="p-3.5 rounded-2xl bg-space-850/60 border border-white/5 hover:border-white/20 transition-all flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="text-[10px] font-mono text-slate-400 uppercase">TOMORROW 18:00 UTC // BO5</div>
+              <div class="font-orbitron font-bold text-sm text-slate-200 flex items-center space-x-2">
+                <span>SINGULARITY EU</span>
+                <span class="text-slate-500 font-sans text-xs">VS</span>
+                <span>TITAN APEX</span>
+              </div>
+            </div>
+            <div class="text-right font-mono text-xs text-slate-400">
+              ROUND 2
+            </div>
+          </div>
+
+          <!-- Interactive Register for Open Qualifiers CTA -->
+          <div class="pt-2">
+            <button onclick="alert('Cadet registration initialized! Check your transmission console.')" class="w-full py-3 rounded-xl bg-space-800 hover:bg-space-700 text-white hover:text-cyan-glow font-orbitron font-bold text-xs uppercase tracking-wider border border-white/10 hover:border-cyan-glow transition-all flex items-center justify-center space-x-2">
+              <svg class="w-4 h-4 text-cyan-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <span>Register Squad For Open Qualifiers</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 6. STUDIO & TECH SECTION -->
+  <!-- ========================================================= -->
+  <section id="studio" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-white/5">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-flex items-center space-x-2 text-xs font-orbitron tracking-widest text-cyan-glow uppercase font-semibold">
+          <span class="w-2 h-2 rounded-full bg-cyan-glow"></span>
+          <span>THE CRAFT // ZERO-G ARCHITECTS</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold tracking-tight text-white leading-tight">
+          BUILT BY ASTROPHYSICISTS. <br/>
+          <span class="bg-gradient-to-r from-cyan-glow to-neon-purple bg-clip-text text-transparent">TESTED BY CHAMPIONS.</span>
+        </h2>
+        <p class="text-slate-300 text-base leading-relaxed">
+          Founded in 2023, Antigravity Gaming was forged with one obsession: eradicating the arbitrary "up and down" constraints of traditional gaming. We built our proprietary 6DOF math library from orbital mechanics principles, optimizing client-side interpolation for twitch reaction times.
+        </p>
+
+        <!-- Studio Highlights Metrics -->
+        <div class="grid grid-cols-3 gap-4 pt-4">
+          <div class="glass-panel p-4 rounded-2xl border border-white/10">
+            <div class="text-2xl sm:text-3xl font-orbitron font-black text-cyan-glow">42</div>
+            <div class="text-[10px] font-mono text-slate-400 uppercase mt-1">CORE SCIENTISTS & DEVS</div>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl border border-white/10">
+            <div class="text-2xl sm:text-3xl font-orbitron font-black text-neon-magenta">14</div>
+            <div class="text-[10px] font-mono text-slate-400 uppercase mt-1">COUNTRIES REMOTE</div>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl border border-white/10">
+            <div class="text-2xl sm:text-3xl font-orbitron font-black text-neon-emerald">09</div>
+            <div class="text-[10px] font-mono text-slate-400 uppercase mt-1">PHYSICS PATENTS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Architecture Card Visual -->
+      <div class="lg:col-span-6">
+        <div class="glass-panel-glow rounded-3xl p-6 sm:p-8 border border-cyan-glow/30 shadow-dual-glow space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10">
+            <div class="font-orbitron font-bold text-white text-base">SINGULARITY PHYSICS STACK</div>
+            <span class="text-xs font-mono text-cyan-glow">VER 4.2.1 PROD</span>
+          </div>
+
+          <div class="space-y-4 text-xs font-mono">
+            <div class="p-3.5 rounded-xl bg-space-850/80 border border-cyan-glow/20 flex items-center justify-between">
+              <div>
+                <div class="text-white font-bold font-orbitron">DUAL-QUATERNION INTERPOLATION</div>
+                <div class="text-slate-400 text-[11px]">Eliminates gimbal lock across any orbital trajectory.</div>
+              </div>
+              <span class="text-cyan-glow font-bold">100% 6-DOF</span>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-space-850/80 border border-neon-magenta/20 flex items-center justify-between">
+              <div>
+                <div class="text-white font-bold font-orbitron">SUB-QUANTUM ROLLBACK NETCODE</div>
+                <div class="text-slate-400 text-[11px]">Deterministic physics state verification with zero rubberbanding.</div>
+              </div>
+              <span class="text-neon-magenta font-bold">0.4MS SYNC</span>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-space-850/80 border border-neon-emerald/20 flex items-center justify-between">
+              <div>
+                <div class="text-white font-bold font-orbitron">PRESSURE & BREACH SIMULATION</div>
+                <div class="text-slate-400 text-[11px]">Volumetric gas velocity equations dynamically ejecting unanchored players.</div>
+              </div>
+              <span class="text-neon-emerald font-bold">ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-cyan-glow/5 border border-cyan-glow/20 flex items-center space-x-3 text-xs text-slate-300">
+            <svg class="w-5 h-5 text-cyan-glow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Interested in joining our orbital physics division? We are hiring senior graphics & network engineers.</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 7. COMMUNITY & NEWSLETTER ("JOIN THE ORBIT") -->
+  <!-- ========================================================= -->
+  <section id="community" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+    
+    <div class="glass-panel-glow rounded-3xl p-8 sm:p-12 border border-cyan-glow/40 shadow-dual-glow relative overflow-hidden">
+      
+      <!-- Ambient Backdrops -->
+      <div class="absolute -top-32 -left-32 w-96 h-96 bg-cyan-glow/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-neon-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+        
+        <div class="inline-flex items-center space-x-2 text-xs font-orbitron tracking-widest text-cyan-glow uppercase font-semibold">
+          <span class="w-2 h-2 rounded-full bg-cyan-glow animate-ping"></span>
+          <span>ORBITAL TRANSMISSION NETWORK</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-orbitron font-black text-white tracking-tight">
+          JOIN THE <span class="bg-gradient-to-r from-cyan-glow to-neon-magenta bg-clip-text text-transparent">ORBIT</span>
+        </h2>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+          Receive confidential closed-alpha access keys, patch telemetry notes, and tournament bracket alerts directly to your neural terminal.
+        </p>
+
+        <!-- Newsletter Signup Form -->
+        <form id="newsletter-form" class="max-w-md mx-auto flex flex-col sm:flex-row items-center gap-3">
+          <div class="relative w-full">
+            <input 
+              type="email" 
+              id="newsletter-email" 
+              required
+              placeholder="ENTER CADET COMM ADDRESS..." 
+              class="w-full px-4 py-3.5 rounded-xl bg-space-950/90 text-white placeholder-slate-500 font-mono text-xs border border-white/20 focus:border-cyan-glow focus:ring-2 focus:ring-cyan-glow/30 focus:outline-none transition-all shadow-inner"
+            >
+          </div>
+          <button 
+            type="submit" 
+            class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-cyan-glow hover:bg-white text-space-950 font-orbitron font-extrabold text-xs uppercase tracking-wider shadow-cyan-glow transition-all duration-300 flex-shrink-0 flex items-center justify-center space-x-2"
+          >
+            <span>Transmit</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Form Feedback Message -->
+        <div id="newsletter-status" class="hidden text-xs font-mono text-cyan-glow bg-cyan-glow/10 py-2 px-4 rounded-lg border border-cyan-glow/30 inline-block"></div>
+
+        <!-- Social Media Hub Links -->
+        <div class="pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+          
+          <!-- Discord -->
+          <a href="https://discord.com" target="_blank" rel="noopener" class="flex items-center space-x-2 text-slate-400 hover:text-cyan-glow transition-colors group">
+            <div class="w-9 h-9 rounded-xl bg-space-850 flex items-center justify-center border border-white/10 group-hover:border-cyan-glow transition-colors">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              </svg>
+            </div>
+            <span class="font-orbitron text-xs">Discord (54k+)</span>
+          </a>
+
+          <!-- Twitch -->
+          <a href="https://twitch.tv" target="_blank" rel="noopener" class="flex items-center space-x-2 text-slate-400 hover:text-neon-purple transition-colors group">
+            <div class="w-9 h-9 rounded-xl bg-space-850 flex items-center justify-center border border-white/10 group-hover:border-neon-purple transition-colors">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+              </svg>
+            </div>
+            <span class="font-orbitron text-xs">Twitch Live</span>
+          </a>
+
+          <!-- X / Twitter -->
+          <a href="https://x.com" target="_blank" rel="noopener" class="flex items-center space-x-2 text-slate-400 hover:text-white transition-colors group">
+            <div class="w-9 h-9 rounded-xl bg-space-850 flex items-center justify-center border border-white/10 group-hover:border-white transition-colors">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <span class="font-orbitron text-xs">@AntigravityGG</span>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="flex items-center space-x-2 text-slate-400 hover:text-neon-pink transition-colors group">
+            <div class="w-9 h-9 rounded-xl bg-space-850 flex items-center justify-center border border-white/10 group-hover:border-neon-pink transition-colors">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+            <span class="font-orbitron text-xs">YouTube VODs</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 8. MINIMALIST SCI-FI FOOTER -->
+  <!-- ========================================================= -->
+  <footer class="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 border-t border-white/10 text-slate-400 text-xs font-mono">
+    
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      
+      <!-- Studio Info -->
+      <div class="space-y-3 md:col-span-1">
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 rounded-full bg-cyan-glow shadow-cyan-glow"></div>
+          <span class="font-orbitron font-bold text-sm text-white tracking-wider">ANTIGRAVITY GAMING</span>
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          Independent game development studio pushing the boundaries of spatial physics, immersive aerospace rendering, and zero-gravity esports.
+        </p>
+        <div class="text-[10px] text-cyan-glow">
+          ORBIT STATION AG-01 // SECTOR 07
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-2">
+        <div class="font-orbitron font-bold text-white text-xs tracking-wider uppercase mb-3">EXPERIENCES</div>
+        <div><a href="#games" class="hover:text-cyan-glow transition-colors">ORBITFALL: Breach Zero</a></div>
+        <div><a href="#games" class="hover:text-cyan-glow transition-colors">ZERO-G DRIFT: Apex Velocity</a></div>
+        <div><a href="#games" class="hover:text-cyan-glow transition-colors">NEBULA PROTOCOL</a></div>
+        <div><a href="#studio" class="hover:text-cyan-glow transition-colors">Singularity Physics SDK</a></div>
+      </div>
+
+      <!-- Esports Circuit -->
+      <div class="space-y-2">
+        <div class="font-orbitron font-bold text-white text-xs tracking-wider uppercase mb-3">ESPORTS HUB</div>
+        <div><a href="#esports" class="hover:text-cyan-glow transition-colors">World Championship 2026</a></div>
+        <div><a href="#esports" class="hover:text-cyan-glow transition-colors">Open Qualifier Registration</a></div>
+        <div><a href="#esports" class="hover:text-cyan-glow transition-colors">Official Rulebook & Bans</a></div>
+        <div><a href="#esports" class="hover:text-cyan-glow transition-colors">Leaderboards & Rankings</a></div>
+      </div>
+
+      <!-- Telemetry Status Box -->
+      <div class="space-y-2">
+        <div class="font-orbitron font-bold text-white text-xs tracking-wider uppercase mb-3">SYSTEM TELEMETRY</div>
+        <div class="glass-panel p-3 rounded-xl border border-white/10 space-y-1 text-[10px]">
+          <div class="flex justify-between">
+            <span>GRID STATUS:</span>
+            <span class="text-neon-emerald font-bold">100% OPERATIONAL</span>
+          </div>
+          <div class="flex justify-between">
+            <span>PHYSICS RATE:</span>
+            <span class="text-cyan-glow font-bold">240.0 HZ</span>
+          </div>
+          <div class="flex justify-between">
+            <span>CORE COORD:</span>
+            <span class="text-slate-300">0.00°N 0.00°E</span>
+          </div>
+          <div class="flex justify-between">
+            <span>GRAV FIELD:</span>
+            <span id="footer-grav-status" class="text-white font-bold">1.00G (STANDARD)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright and Legal -->
+    <div class="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <div>
+        © 2026 ANTIGRAVITY GAMING STUDIOS INC. ALL RIGHTS RESERVED.
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="#" class="hover:text-cyan-glow transition-colors">PRIVACY MATRIX</a>
+        <span>•</span>
+        <a href="#" class="hover:text-cyan-glow transition-colors">TERMS OF FLIGHT</a>
+        <span>•</span>
+        <a href="#" class="hover:text-cyan-glow transition-colors">SECURITY BOUNTY</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- 9. SHOWREEL / TRAILER MODAL (CYBERPUNK THEATER) -->
+  <!-- ========================================================= -->
+  <div id="trailer-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Backdrop Blur with dark space tint -->
+    <div id="modal-backdrop" class="absolute inset-0 bg-space-950/85 backdrop-blur-xl"></div>
+
+    <!-- Modal Card Window -->
+    <div class="relative w-full max-w-4xl glass-panel-glow rounded-3xl border border-cyan-glow/40 shadow-dual-glow overflow-hidden z-10 transform scale-95 transition-all duration-300">
+      
+      <!-- Top Title Bar -->
+      <div class="flex items-center justify-between p-4 px-6 border-b border-cyan-glow/20 bg-space-850/80">
+        <div class="flex items-center space-x-3">
+          <span class="w-3 h-3 rounded-full bg-cyan-glow animate-ping"></span>
+          <div>
+            <h3 id="modal-title" class="font-orbitron font-extrabold text-sm sm:text-base text-white tracking-wider">
+              ANTIGRAVITY 2026 WORLD SHOWREEL
+            </h3>
+            <p id="modal-subtitle" class="text-[10px] font-mono text-cyan-glow">
+              SIMULATED HOLO-FEED // RESOLUTION: 4K 60FPS
+            </p>
+          </div>
+        </div>
+
+        <button id="modal-close-btn" class="p-2 rounded-xl bg-space-800 hover:bg-space-700 text-slate-400 hover:text-white border border-white/10 hover:border-cyan-glow transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Trailer Screen Canvas -->
+      <div class="relative w-full aspect-video bg-space-950 flex items-center justify-center overflow-hidden">
+        <canvas id="trailer-canvas" class="w-full h-full object-cover"></canvas>
+        
+        <!-- HUD Crosshair & Targeting Reticles -->
+        <div class="absolute inset-0 pointer-events-none border border-cyan-glow/20 m-4 rounded-xl flex flex-col justify-between p-4">
+          <div class="flex justify-between font-mono text-[10px] text-cyan-glow">
+            <span>REC [●] 00:44:18</span>
+            <span>INERTIAL CORE: 0.00G</span>
+          </div>
+          <div class="flex justify-between font-mono text-[10px] text-slate-400">
+            <span>SECTOR: HIGH ORBIT</span>
+            <span>AUDIO: DUAL-SYNTH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Audio & Playback Controls Bar -->
+      <div class="p-4 px-6 border-t border-white/10 bg-space-850/80 flex items-center justify-between">
+        <div class="flex items-center space-x-3 font-mono text-xs text-slate-300">
+          <button id="trailer-play-pause-btn" class="px-3 py-1 rounded-lg bg-cyan-glow text-space-950 font-orbitron font-bold text-xs uppercase hover:bg-white transition-colors">
+            PAUSE
+          </button>
+          <span id="trailer-timecode" class="text-slate-400">00:18 / 01:45</span>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button onclick="closeTrailerModal()" class="px-4 py-1.5 rounded-lg bg-space-700 hover:bg-space-600 text-white font-orbitron text-xs uppercase transition-colors">
+            Exit Cinema Mode
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 10. JAVASCRIPT: PARTICLES, PARALLAX, ZERO-G & SYNTH SFX -->
+  <!-- ========================================================= -->
+  <script>
+    /* =======================================================
+       1. WEB AUDIO API SYNTHESIZER (NATIVE ZERO-DEPENDENCY SFX)
+       ======================================================= */
+    class SciFiSoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = false;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      toggle() {
+        this.init();
+        this.enabled = !this.enabled;
+        return this.enabled;
+      }
+
+      // Crisp UI Click Blip
+      playClick() {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(1760, now + 0.05);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.06);
+      }
+
+      // Zero-G Warp Activation Resonance
+      playZeroGOn() {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+
+        // Sub Bass Sweep
+        const subOsc = this.ctx.createOscillator();
+        const subGain = this.ctx.createGain();
+        subOsc.type = 'triangle';
+        subOsc.frequency.setValueAtTime(160, now);
+        subOsc.frequency.exponentialRampToValueAtTime(45, now + 0.8);
+        subGain.gain.setValueAtTime(0.3, now);
+        subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+        subOsc.connect(subGain);
+        subGain.connect(this.ctx.destination);
+        subOsc.start(now);
+        subOsc.stop(now + 0.9);
+
+        // High Shimmer Sweep
+        const highOsc = this.ctx.createOscillator();
+        const highGain = this.ctx.createGain();
+        highOsc.type = 'sine';
+        highOsc.frequency.setValueAtTime(400, now);
+        highOsc.frequency.exponentialRampToValueAtTime(1400, now + 0.6);
+        highGain.gain.setValueAtTime(0.1, now);
+        highGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        highOsc.connect(highGain);
+        highGain.connect(this.ctx.destination);
+        highOsc.start(now);
+        highOsc.stop(now + 0.65);
+      }
+
+      // Gravity Restored (Mechanical Clank)
+      playZeroGOff() {
+        if (!this.enabled || !this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(120, now);
+        osc.frequency.exponentialRampToValueAtTime(30, now + 0.2);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.26);
+      }
+    }
+
+    const soundEngine = new SciFiSoundEngine();
+
+    // Wire SFX Toggle Button
+    const sfxBtn = document.getElementById('sfx-toggle-btn');
+    const sfxIconOn = document.getElementById('sfx-icon-on');
+    const sfxIconOff = document.getElementById('sfx-icon-off');
+    const audioToast = document.getElementById('audio-toast');
+    const audioToastMsg = document.getElementById('audio-toast-msg');
+
+    function showToast(msg) {
+      audioToastMsg.textContent = msg;
+      audioToast.classList.remove('opacity-0', 'translate-y-24');
+      setTimeout(() => {
+        audioToast.classList.add('opacity-0', 'translate-y-24');
+      }, 2500);
+    }
+
+    sfxBtn.addEventListener('click', () => {
+      const active = soundEngine.toggle();
+      if (active) {
+        sfxIconOn.classList.remove('hidden');
+        sfxIconOff.classList.add('hidden');
+        sfxBtn.classList.add('border-cyan-glow', 'text-cyan-glow');
+        soundEngine.playClick();
+        showToast('AUDIO SYNTHESIS: ONLINE');
+      } else {
+        sfxIconOn.classList.add('hidden');
+        sfxIconOff.classList.remove('hidden');
+        sfxBtn.classList.remove('border-cyan-glow', 'text-cyan-glow');
+        showToast('AUDIO SYNTHESIS: MUTED');
+      }
+    });
+
+    // Add click sound to interactive buttons
+    document.querySelectorAll('button, a[href^="#"]').forEach(el => {
+      el.addEventListener('click', () => {
+        soundEngine.playClick();
+      });
+    });
+
+
+    /* =======================================================
+       2. FULLSCREEN 60FPS STARFIELD & PARTICLES CANVAS
+       ======================================================= */
+    const starCanvas = document.getElementById('starfield-canvas');
+    const starCtx = starCanvas.getContext('2d');
+    let width = (starCanvas.width = window.innerWidth);
+    let height = (starCanvas.height = window.innerHeight);
+
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let isZeroG = false;
+
+    window.addEventListener('resize', () => {
+      width = starCanvas.width = window.innerWidth;
+      height = starCanvas.height = window.innerHeight;
+      initStars();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Particle Object
+    class StarParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 0.5;
+        this.baseSpeedX = (Math.random() - 0.5) * 0.35;
+        this.baseSpeedY = (Math.random() - 0.5) * 0.35;
+        this.speedX = this.baseSpeedX;
+        this.speedY = this.baseSpeedY;
+        this.alpha = Math.random() * 0.7 + 0.2;
+        this.color = Math.random() > 0.65 ? '#00F0FF' : (Math.random() > 0.5 ? '#BD00FF' : '#FFFFFF');
+      }
+
+      update() {
+        if (isZeroG) {
+          // Zero-G: particles float gently upwards and drift with more velocity
+          this.speedY -= 0.015;
+          if (this.speedY < -1.8) this.speedY = -1.8;
+          this.x += this.speedX * 1.5;
+          this.y += this.speedY;
+
+          if (this.y < -10) {
+            this.y = height + 10;
+            this.x = Math.random() * width;
+            this.speedY = -0.6;
+          }
+        } else {
+          // Standard: subtle drifting
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.x < 0) this.x = width;
+          if (this.x > width) this.x = 0;
+          if (this.y < 0) this.y = height;
+          if (this.y > height) this.y = 0;
+        }
+
+        // Slight cursor repulsion
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const force = (120 - dist) / 120;
+          this.x -= (dx / dist) * force * 1.8;
+          this.y -= (dy / dist) * force * 1.8;
+        }
+      }
+
+      draw() {
+        starCtx.beginPath();
+        starCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        starCtx.fillStyle = this.color;
+        starCtx.globalAlpha = this.alpha;
+        starCtx.shadowBlur = this.size > 1.5 ? 8 : 0;
+        starCtx.shadowColor = this.color;
+        starCtx.fill();
+        starCtx.shadowBlur = 0;
+      }
+    }
+
+    let stars = [];
+    function initStars() {
+      stars = [];
+      const count = Math.floor((width * height) / 9500);
+      for (let i = 0; i < count; i++) {
+        stars.push(new StarParticle());
+      }
+    }
+    initStars();
+
+    function renderStarfield() {
+      starCtx.clearRect(0, 0, width, height);
+
+      // Connect nearby particles with subtle cosmic laser threads
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 75) {
+            starCtx.beginPath();
+            starCtx.moveTo(stars[i].x, stars[i].y);
+            starCtx.lineTo(stars[j].x, stars[j].y);
+            starCtx.strokeStyle = isZeroG ? 'rgba(0, 240, 255, 0.22)' : 'rgba(0, 240, 255, 0.08)';
+            starCtx.lineWidth = 0.6;
+            starCtx.stroke();
+          }
+        }
+      }
+
+      // Draw all stars
+      stars.forEach(s => {
+        s.update();
+        s.draw();
+      });
+
+      requestAnimationFrame(renderStarfield);
+    }
+    renderStarfield();
+
+
+    /* =======================================================
+       3. ZERO-G MODE EASTER EGG (LEVITATION PHYSICS TOGGLE)
+       ======================================================= */
+    const zeroGToggleBtn = document.getElementById('zero-g-toggle');
+    const zeroGStatusText = document.getElementById('zero-g-status-text');
+    const zeroGDot = document.getElementById('zero-g-dot');
+    const zeroGPing = document.getElementById('zero-g-ping');
+    const zeroGThumb = document.getElementById('zero-g-thumb');
+    const zeroGSwitchBar = document.getElementById('zero-g-switch-bar');
+    const zeroGBanner = document.getElementById('zero-g-banner');
+    const zeroGResetBtn = document.getElementById('zero-g-reset-btn');
+    const footerGravStatus = document.getElementById('footer-grav-status');
+
+    function toggleZeroG(state) {
+      isZeroG = typeof state === 'boolean' ? state : !isZeroG;
+
+      if (isZeroG) {
+        document.body.classList.add('zero-g-active');
+        zeroGToggleBtn.setAttribute('aria-checked', 'true');
+        zeroGStatusText.textContent = 'ACTIVE (0.0G)';
+        zeroGStatusText.classList.add('text-cyan-glow');
+        zeroGDot.classList.remove('bg-slate-500');
+        zeroGDot.classList.add('bg-cyan-glow');
+        zeroGPing.classList.remove('opacity-0');
+        zeroGThumb.style.transform = 'translateX(16px)';
+        zeroGThumb.classList.remove('bg-slate-400');
+        zeroGThumb.classList.add('bg-cyan-glow');
+        zeroGSwitchBar.classList.add('border-cyan-glow', 'bg-cyan-glow/20');
+        
+        // Banner Display
+        zeroGBanner.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-8');
+
+        // Footer status
+        footerGravStatus.textContent = '0.00G (WEIGHTLESS)';
+        footerGravStatus.className = 'text-cyan-glow font-bold animate-pulse';
+
+        // Sound cue
+        soundEngine.playZeroGOn();
+        showToast('ZERO-G FIELD ENGAGED // 0.00G');
+
+        // Randomize floating parameters for extra organic weightlessness
+        document.querySelectorAll('.zero-g-item').forEach((item, idx) => {
+          const randDuration = (4.5 + Math.random() * 3).toFixed(2);
+          const randDelay = (idx * 0.1).toFixed(2);
+          const randY = (-20 - Math.random() * 25).toFixed(0);
+          const randRot = (Math.random() * 4 - 2).toFixed(1);
+          item.style.setProperty('--zg-duration', `${randDuration}s`);
+          item.style.setProperty('--zg-delay', `${randDelay}s`);
+          item.style.setProperty('--zg-offset-y', `${randY}px`);
+          item.style.setProperty('--zg-rot', `${randRot}deg`);
+        });
+
+      } else {
+        document.body.classList.remove('zero-g-active');
+        zeroGToggleBtn.setAttribute('aria-checked', 'false');
+        zeroGStatusText.textContent = 'OFF (1.0G)';
+        zeroGStatusText.classList.remove('text-cyan-glow');
+        zeroGDot.classList.remove('bg-cyan-glow');
+        zeroGDot.classList.add('bg-slate-500');
+        zeroGPing.classList.add('opacity-0');
+        zeroGThumb.style.transform = 'translateX(0px)';
+        zeroGThumb.classList.remove('bg-cyan-glow');
+        zeroGThumb.classList.add('bg-slate-400');
+        zeroGSwitchBar.classList.remove('border-cyan-glow', 'bg-cyan-glow/20');
+
+        // Banner Hide
+        zeroGBanner.classList.add('opacity-0', 'pointer-events-none', '-translate-y-8');
+
+        // Footer status
+        footerGravStatus.textContent = '1.00G (STANDARD)';
+        footerGravStatus.className = 'text-white font-bold';
+
+        // Sound cue
+        soundEngine.playZeroGOff();
+        showToast('GRAVITATIONAL MATRIX NORMALIZED // 1.0G');
+      }
+    }
+
+    zeroGToggleBtn.addEventListener('click', () => toggleZeroG());
+    zeroGResetBtn.addEventListener('click', () => toggleZeroG(false));
+
+
+    /* =======================================================
+       4. INTERACTIVE 3D PARALLAX FOR HERO ARTIFACT
+       ======================================================= */
+    const heroArtifact = document.getElementById('hero-artifact-container');
+    const hudCard1 = document.getElementById('hud-card-1');
+    const hudCard2 = document.getElementById('hud-card-2');
+    const hudCore = document.getElementById('hud-core');
+
+    if (heroArtifact) {
+      let targetX = 0, targetY = 0;
+      let curX = 0, curY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = heroArtifact.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const deltaX = (e.clientX - centerX) / (window.innerWidth / 2);
+        const deltaY = (e.clientY - centerY) / (window.innerHeight / 2);
+
+        targetX = deltaX * 18; // Max 18 deg tilt
+        targetY = -deltaY * 18;
+      });
+
+      function animateArtifactParallax() {
+        curX += (targetX - curX) * 0.08;
+        curY += (targetY - curY) * 0.08;
+
+        if (heroArtifact) {
+          heroArtifact.style.transform = `perspective(900px) rotateY(${curX}deg) rotateX(${curY}deg)`;
+        }
+        if (hudCard1 && !isZeroG) {
+          hudCard1.style.transform = `translate3d(${-curX * 1.5}px, ${-curY * 1.5}px, 40px)`;
+        }
+        if (hudCard2 && !isZeroG) {
+          hudCard2.style.transform = `translate3d(${curX * 2}px, ${curY * 2}px, 60px)`;
+        }
+        if (hudCore) {
+          hudCore.style.transform = `translate3d(${curX * 0.5}px, ${curY * 0.5}px, 20px)`;
+        }
+
+        requestAnimationFrame(animateArtifactParallax);
+      }
+      animateArtifactParallax();
+    }
+
+
+    /* =======================================================
+       5. INTERACTIVE MINI PHYSICS SANDBOX (BENTO CARD 4)
+       ======================================================= */
+    const physCanvas = document.getElementById('mini-physics-canvas');
+    if (physCanvas) {
+      const pCtx = physCanvas.getContext('2d');
+      let pWidth = (physCanvas.width = physCanvas.parentElement.clientWidth);
+      let pHeight = (physCanvas.height = physCanvas.parentElement.clientHeight);
+
+      window.addEventListener('resize', () => {
+        if (physCanvas.parentElement) {
+          pWidth = physCanvas.width = physCanvas.parentElement.clientWidth;
+          pHeight = physCanvas.height = physCanvas.parentElement.clientHeight;
+        }
+      });
+
+      let attractors = [{ x: pWidth / 2, y: pHeight / 2, mass: 120 }];
+      let particles = [];
+
+      for (let i = 0; i < 40; i++) {
+        particles.push({
+          x: Math.random() * pWidth,
+          y: Math.random() * pHeight,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          size: Math.random() * 2 + 1,
+          color: Math.random() > 0.5 ? '#00F0FF' : '#BD00FF'
+        });
+      }
+
+      physCanvas.addEventListener('mousedown', (e) => {
+        const rect = physCanvas.getBoundingClientRect();
+        attractors.push({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+          mass: 140
+        });
+        soundEngine.playClick();
+        if (attractors.length > 4) attractors.shift();
+      });
+
+      document.getElementById('reset-physics-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        attractors = [{ x: pWidth / 2, y: pHeight / 2, mass: 120 }];
+      });
+
+      function renderMiniPhysics() {
+        pCtx.fillStyle = 'rgba(7, 7, 13, 0.25)';
+        pCtx.fillRect(0, 0, pWidth, pHeight);
+
+        // Draw Attractors
+        attractors.forEach((att, idx) => {
+          pCtx.beginPath();
+          pCtx.arc(att.x, att.y, 8, 0, Math.PI * 2);
+          pCtx.fillStyle = '#00F0FF';
+          pCtx.shadowBlur = 15;
+          pCtx.shadowColor = '#00F0FF';
+          pCtx.fill();
+          pCtx.shadowBlur = 0;
+
+          // Pulse ring
+          pCtx.beginPath();
+          pCtx.arc(att.x, att.y, 16 + Math.sin(Date.now() * 0.005 + idx) * 4, 0, Math.PI * 2);
+          pCtx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+          pCtx.lineWidth = 1;
+          pCtx.stroke();
+        });
+
+        // Update and draw orbiting nodes
+        particles.forEach(p => {
+          attractors.forEach(att => {
+            const dx = att.x - p.x;
+            const dy = att.y - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist > 5) {
+              const force = (att.mass / (dist * dist + 100)) * 0.45;
+              p.vx += (dx / dist) * force;
+              p.vy += (dy / dist) * force;
+            }
+          });
+
+          p.vx *= 0.99; // drag
+          p.vy *= 0.99;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Wrap edges
+          if (p.x < 0) p.x = pWidth;
+          if (p.x > pWidth) p.x = 0;
+          if (p.y < 0) p.y = pHeight;
+          if (p.y > pHeight) p.y = 0;
+
+          pCtx.beginPath();
+          pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          pCtx.fillStyle = p.color;
+          pCtx.fill();
+        });
+
+        requestAnimationFrame(renderMiniPhysics);
+      }
+      renderMiniPhysics();
+    }
+
+
+    /* =======================================================
+       6. ESPORTS STREAM SIMULATION & CHAT TICKER
+       ======================================================= */
+    const streamCanvas = document.getElementById('stream-simulation-canvas');
+    if (streamCanvas) {
+      const sCtx = streamCanvas.getContext('2d');
+      let sWidth = (streamCanvas.width = 640);
+      let sHeight = (streamCanvas.height = 360);
+
+      let targetPos = { x: 320, y: 180 };
+      let dronePos = { x: 280, y: 160 };
+
+      function renderStreamSimulation() {
+        sCtx.fillStyle = '#05050C';
+        sCtx.fillRect(0, 0, sWidth, sHeight);
+
+        // Cyber Grid Lines
+        sCtx.strokeStyle = 'rgba(0, 240, 255, 0.12)';
+        sCtx.lineWidth = 1;
+        for (let x = 0; x < sWidth; x += 40) {
+          sCtx.beginPath();
+          sCtx.moveTo(x, 0);
+          sCtx.lineTo(x, sHeight);
+          sCtx.stroke();
+        }
+        for (let y = 0; y < sHeight; y += 40) {
+          sCtx.beginPath();
+          sCtx.moveTo(0, y);
+          sCtx.lineTo(sWidth, y);
+          sCtx.stroke();
+        }
+
+        // Animate combat drones
+        const time = Date.now() * 0.002;
+        dronePos.x = 320 + Math.cos(time) * 140;
+        dronePos.y = 180 + Math.sin(time * 1.5) * 70;
+
+        targetPos.x = 320 + Math.cos(time + 1.2) * 100;
+        targetPos.y = 180 + Math.sin(time * 1.2) * 60;
+
+        // Laser beam between drones
+        sCtx.beginPath();
+        sCtx.moveTo(dronePos.x, dronePos.y);
+        sCtx.lineTo(targetPos.x, targetPos.y);
+        sCtx.strokeStyle = Math.sin(time * 5) > 0 ? '#00F0FF' : '#FF007F';
+        sCtx.lineWidth = 2;
+        sCtx.shadowBlur = 10;
+        sCtx.shadowColor = sCtx.strokeStyle;
+        sCtx.stroke();
+        sCtx.shadowBlur = 0;
+
+        // Drone 1 (Vortex Blue)
+        sCtx.beginPath();
+        sCtx.arc(dronePos.x, dronePos.y, 9, 0, Math.PI * 2);
+        sCtx.fillStyle = '#00F0FF';
+        sCtx.fill();
+
+        // Drone 2 (Eclipse Purple)
+        sCtx.beginPath();
+        sCtx.arc(targetPos.x, targetPos.y, 9, 0, Math.PI * 2);
+        sCtx.fillStyle = '#BD00FF';
+        sCtx.fill();
+
+        requestAnimationFrame(renderStreamSimulation);
+      }
+      renderStreamSimulation();
+    }
+
+    // Live Twitch Chat Simulation
+    const liveChatBox = document.getElementById('live-chat-box');
+    const simulatedMessages = [
+      { user: 'VORTEX_FAN_99', text: 'THAT 0-G FLIP RAIL SHOT WAS DISGUSTING!! 🔥🔥', color: '#00F0FF' },
+      { user: 'NovaSniper', text: 'Kaizen is actually carrying hard right now lol', color: '#BD00FF' },
+      { user: 'ZeroG_Enjoyer', text: 'Eclipse 9 rotation is clean though, overtime incoming', color: '#FFB800' },
+      { user: 'AstroPilot', text: '128 tickrate feels so crispy on stream', color: '#00FF9D' },
+      { user: 'VoidRunner', text: 'DEFY GRAVITY OR GO HOME!! GG', color: '#FF007F' }
+    ];
+
+    let chatIdx = 0;
+    function injectChatMessage() {
+      if (!liveChatBox) return;
+      const msg = simulatedMessages[chatIdx % simulatedMessages.length];
+      chatIdx++;
+
+      const div = document.createElement('div');
+      div.className = 'flex items-center space-x-1.5 transition-all duration-300 transform translate-y-2 opacity-0';
+      div.innerHTML = `<span style="color: ${msg.color}" class="font-bold font-orbitron text-[10px]">${msg.user}:</span> <span class="text-slate-300 text-[11px]">${msg.text}</span>`;
+      
+      liveChatBox.appendChild(div);
+      setTimeout(() => {
+        div.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      if (liveChatBox.children.length > 3) {
+        liveChatBox.removeChild(liveChatBox.children[0]);
+      }
+    }
+    setInterval(injectChatMessage, 3200);
+    injectChatMessage();
+
+    // Viewer Count Dynamic Fluctuation
+    const viewerCountEl = document.getElementById('live-viewer-count');
+    setInterval(() => {
+      if (viewerCountEl) {
+        const base = 52800;
+        const change = Math.floor(Math.random() * 200 - 90);
+        viewerCountEl.textContent = (base + change).toLocaleString();
+      }
+    }, 4000);
+
+
+    /* =======================================================
+       7. REAL-TIME TOURNAMENT COUNTDOWN TIMER
+       ======================================================= */
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMinutes = document.getElementById('cd-minutes');
+    const cdSeconds = document.getElementById('cd-seconds');
+
+    // Target date: 2 days, 14 hours, 38 mins from now
+    const targetDate = new Date(Date.now() + (2 * 24 * 60 * 60 + 14 * 60 * 60 + 38 * 60 + 45) * 1000);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) return;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
+      if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+      if (cdMinutes) cdMinutes.textContent = String(minutes).padStart(2, '0');
+      if (cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+    /* =======================================================
+       8. SHOWREEL & TRAILER CINEMA MODAL
+       ======================================================= */
+    const trailerModal = document.getElementById('trailer-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const showreelBtn = document.getElementById('showreel-open-btn');
+    const trailerCanvas = document.getElementById('trailer-canvas');
+    let trailerAnimId = null;
+
+    function openTrailerModal(title = 'ANTIGRAVITY 2026 WORLD SHOWREEL', subtitle = 'OFFICIAL CINEMATIC TRAILER // 4K 60FPS') {
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalSubtitle) modalSubtitle.textContent = subtitle;
+
+      trailerModal.classList.remove('opacity-0', 'pointer-events-none');
+      const innerCard = trailerModal.querySelector('.glass-panel-glow');
+      if (innerCard) {
+        innerCard.classList.remove('scale-95');
+        innerCard.classList.add('scale-100');
+      }
+      soundEngine.playClick();
+      startTrailerAnimation();
+    }
+
+    function closeTrailerModal() {
+      trailerModal.classList.add('opacity-0', 'pointer-events-none');
+      const innerCard = trailerModal.querySelector('.glass-panel-glow');
+      if (innerCard) {
+        innerCard.classList.remove('scale-100');
+        innerCard.classList.add('scale-95');
+      }
+      soundEngine.playClick();
+      if (trailerAnimId) cancelAnimationFrame(trailerAnimId);
+    }
+
+    if (showreelBtn) showreelBtn.addEventListener('click', () => openTrailerModal());
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeTrailerModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeTrailerModal);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTrailerModal();
+    });
+
+    // Animated Sci-Fi Canvas Scene inside Cinema Trailer Modal
+    function startTrailerAnimation() {
+      if (!trailerCanvas) return;
+      const tCtx = trailerCanvas.getContext('2d');
+      trailerCanvas.width = 854;
+      trailerCanvas.height = 480;
+
+      let angle = 0;
+      function renderTrailer() {
+        tCtx.fillStyle = '#05050A';
+        tCtx.fillRect(0, 0, trailerCanvas.width, trailerCanvas.height);
+
+        angle += 0.02;
+
+        // Cinematic Hyperspace Streaks
+        const cx = trailerCanvas.width / 2;
+        const cy = trailerCanvas.height / 2;
+
+        for (let i = 0; i < 60; i++) {
+          const a = (i / 60) * Math.PI * 2 + angle;
+          const r1 = 30 + (Math.sin(angle * 2 + i) + 1) * 60;
+          const r2 = r1 + 80 + Math.cos(angle + i) * 40;
+          tCtx.beginPath();
+          tCtx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
+          tCtx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+          tCtx.strokeStyle = i % 2 === 0 ? '#00F0FF' : '#BD00FF';
+          tCtx.lineWidth = 1.5;
+          tCtx.stroke();
+        }
+
+        // Central Hologram Emblem
+        tCtx.beginPath();
+        tCtx.arc(cx, cy, 35, 0, Math.PI * 2);
+        tCtx.strokeStyle = '#00F0FF';
+        tCtx.lineWidth = 2;
+        tCtx.stroke();
+
+        tCtx.fillStyle = '#FFF';
+        tCtx.font = 'bold 16px Orbitron';
+        tCtx.textAlign = 'center';
+        tCtx.fillText('ANTIGRAVITY // CINEMATIC ENGINE', cx, cy + 85);
+
+        trailerAnimId = requestAnimationFrame(renderTrailer);
+      }
+      renderTrailer();
+    }
+
+
+    /* =======================================================
+       9. NEWSLETTER FORM HANDLER
+       ======================================================= */
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterEmail = document.getElementById('newsletter-email');
+    const newsletterStatus = document.getElementById('newsletter-status');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = newsletterEmail.value.trim();
+        if (email) {
+          newsletterStatus.classList.remove('hidden');
+          newsletterStatus.textContent = `TRANSMISSION RECEIVED [${email}] // CADET CLEARANCE ISSUED.`;
+          newsletterEmail.value = '';
+          soundEngine.playClick();
+          showToast('TRANSMISSION ENCRYPTED & SAVED');
+        }
+      });
+    }
+
+
+    /* =======================================================
+       10. MOBILE MENU TOGGLE
+       ======================================================= */
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        soundEngine.playClick();
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+</body>
+</html>
